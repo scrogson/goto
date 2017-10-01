@@ -39,6 +39,7 @@ defmodule GotoWeb do
 
       import GotoWeb.Router.Helpers
       import GotoWeb.ErrorHelpers
+      import GotoWeb.GravatarHelper
       import GotoWeb.Gettext
     end
   end
@@ -55,6 +56,7 @@ defmodule GotoWeb do
     quote do
       use Phoenix.Channel
       import GotoWeb.Gettext
+      import GotoWeb.GravatarHelper
     end
   end
 

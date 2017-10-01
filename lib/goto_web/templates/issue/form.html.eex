@@ -1,0 +1,33 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p>Oops, something went wrong! Please check the errors below.</p>
+    </div>
+  <% end %>
+  <div class="media">
+    <div class="media-left">
+      <a href="#">
+        <img class="img-rounded media-object" src="<%= avatar_url(@current_user, s: 128) %>" width="64" height="64" />
+      </a>
+    </div>
+    <div class="media-body">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="form-group">
+            <%= text_input f, :subject, placeholder: "Subject", class: "form-control" %>
+            <%= error_tag f, :subject %>
+          </div>
+
+          <div class="form-group">
+            <%= textarea f, :body, rows: 10, placeholder: "Leave a comment", class: "form-control" %>
+            <%= error_tag f, :body %>
+          </div>
+
+          <div class="form-group">
+            <%= submit "Submit", class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </li>
+<% end %>
