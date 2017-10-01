@@ -4,9 +4,20 @@ defmodule Goto.UserManager do
   """
 
   import Ecto.Query, warn: false
-  alias Goto.Repo
 
+  alias Goto.Repo
   alias Goto.UserManager.User
+
+  def authenticate_with_email_and_password(email, password) do
+    with %User{password_hash: hash} = user <- Repo.get_by(User, email: email),
+         true <- Comeonin.Bcrypt.checkpw(password, hash) do
+      {:ok, user}
+    else
+      _ ->
+        Comeonin.Bcrypt.dummy_checkpw()
+        {:error, :unauthorized}
+    end
+  end
 
   @doc """
   Returns the list of users.
@@ -49,7 +60,6 @@ defmodule Goto.UserManager do
       ** (Ecto.NoResultsError)
 
   """
-  def get_user(id), do: Repo.get(User, id)
   def get_user!(id), do: Repo.get!(User, id)
 
   @doc """
