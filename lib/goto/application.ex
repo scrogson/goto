@@ -13,6 +13,7 @@ defmodule Goto.Application do
       # Start the endpoint when the application starts
       supervisor(GotoWeb.Endpoint, []),
       # Start your own worker by calling: Goto.Worker.start_link(arg1, arg2, arg3)
+      supervisor(GotoWeb.Presence, [])
       # worker(Goto.Worker, [arg1, arg2, arg3]),
     ]
 
